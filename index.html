@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Estrutura de Campanhas · Andaza Imóveis · Trilha</title>
+<link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
+<style>
+@font-face{font-family:'PolySans Bulky Wide';font-style:normal;font-weight:800;font-display:swap;src:url('https://static.wixstatic.com/ufonts/44f42e_6715ad510f8f4f6fa30541c6df9a03e7/woff2/file.woff2') format('woff2')}
+@font-face{font-family:'PolySans Bulky';font-style:normal;font-weight:700;font-display:swap;src:url('https://static.wixstatic.com/ufonts/44f42e_808656c3944d427abd0adafe7597d810/woff2/file.woff2') format('woff2')}
+@font-face{font-family:'PolySans Median';font-style:normal;font-weight:500;font-display:swap;src:url('https://static.wixstatic.com/ufonts/fb1953_158350b0513342cda7fc854a95b4e172/woff2/file.woff2') format('woff2')}
+@font-face{font-family:'PolySans Slim';font-style:normal;font-weight:400;font-display:swap;src:url('https://static.wixstatic.com/ufonts/fb1953_036c275183ca45bca9804e4e72fcf90f/woff2/file.woff2') format('woff2')}
+@font-face{font-family:'PolySans Neutral';font-style:italic;font-weight:400;font-display:swap;src:url('https://static.wixstatic.com/ufonts/44f42e_d592374634674997a361dab4866716a2/woff2/file.woff2') format('woff2')}
+
+:root{
+  --bg:#e9e8e4; --bg-dark:#1d1d1b;
+  --surface:#fff; --surface-soft:#f3f2ee;
+  --border:#d8d6cf; --border-soft:#dfddd5;
+  --accent:#ee4c20; --accent-dark:#c43815; --accent-light:#fde0d3; --accent-soft:#fdeee6;
+  --text:#212121; --text-soft:#454c47; --muted:#717c72;
+  --green-deep:#333A32; --green-soft:#e2e9e5;
+  --r:20px; --r-sm:14px; --r-xs:8px;
+  --shadow:0 4px 16px rgba(29,29,27,.06),0 1px 4px rgba(29,29,27,.04);
+  --shadow-md:0 12px 40px rgba(29,29,27,.08),0 2px 8px rgba(29,29,27,.04);
+  --display:'PolySans Bulky Wide','PolySans Bulky',system-ui,sans-serif;
+  --heading:'PolySans Bulky',system-ui,sans-serif;
+  --sans:'PolySans Slim','PolySans Median',system-ui,sans-serif;
+  --medium:'PolySans Median',system-ui,sans-serif;
+  --max:1380px; --gutter:clamp(24px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(at 90% 5%,rgba(238,76,32,.05) 0,transparent 50%),
+                   radial-gradient(at 10% 95%,rgba(201,169,97,.04) 0,transparent 50%);
+}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(233,232,228,.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(217,207,194,.4);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;padding:16px var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.nav-brand{display:flex;flex-direction:column;line-height:1.15}
+.nav-client{font-family:var(--heading);font-weight:700;font-size:15px;color:var(--text);letter-spacing:-.01em}
+.nav-sub{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.nav-badge{
+  background:var(--accent);color:#fff;font-family:var(--medium);
+  font-size:11px;font-weight:500;padding:6px 14px;border-radius:999px;
+  letter-spacing:.02em;
+}
+
+/* ── PAGE ── */
+.page{max-width:var(--max);margin:0 auto;padding:calc(80px + var(--gutter)) var(--gutter) 80px}
+
+/* ── HERO ── */
+.hero{margin-bottom:56px}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:18px;height:1px;background:currentColor}
+.hero-title{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--text);
+  margin-bottom:12px;
+}
+.hero-title em{font-family:'PolySans Neutral',system-ui;font-weight:400;color:var(--accent);font-style:italic}
+.hero-sub{font-family:var(--sans);font-size:16px;color:var(--muted);max-width:52ch;line-height:1.55}
+
+/* ── SECTION LABEL ── */
+.section-label{
+  font-family:var(--medium);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── SHARED FLOW CARD ── */
+.shared-card{
+  background:var(--surface);border-radius:var(--r);
+  border:1px solid var(--border-soft);
+  padding:32px 36px;
+  box-shadow:var(--shadow);
+  margin-bottom:8px;
+}
+.shared-flow{display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:4px}
+
+/* step nodes */
+.snode{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.sbox{
+  background:var(--bg-dark);color:rgba(233,232,228,.92);
+  font-family:var(--medium);font-size:12px;font-weight:500;
+  padding:13px 16px;border-radius:var(--r-sm);text-align:center;line-height:1.45;width:154px;
+}
+.sbox-caption{font-size:10px;color:var(--muted);font-style:italic;font-family:var(--sans)}
+.sbox-green{
+  background:var(--green-soft);color:var(--green-deep);
+  font-family:var(--medium);font-size:12px;font-weight:500;
+  padding:12px 14px;border-radius:var(--r-sm);text-align:center;
+  width:154px;line-height:1.4;border:1.5px solid #b8dcc8;
+}
+.sbox-dark{
+  background:var(--bg-dark);color:rgba(233,232,228,.92);
+  font-family:var(--medium);font-size:12px;font-weight:500;
+  padding:12px 14px;border-radius:var(--r-sm);text-align:center;width:154px;line-height:1.4;
+}
+.sbox-neutral{
+  background:var(--surface-soft);color:var(--text);
+  font-family:var(--medium);font-size:12px;font-weight:500;
+  padding:13px 16px;border-radius:var(--r-sm);text-align:center;width:148px;line-height:1.45;
+  border:1.5px solid var(--border);
+}
+.sstack{display:flex;flex-direction:column;gap:8px}
+.sarr{flex-shrink:0;padding:0 10px;color:var(--border);font-size:18px;display:flex;align-items:center}
+.sarr::after{content:'→'}
+
+/* bifurcation */
+.sbifurc{flex-shrink:0;display:flex;align-items:stretch;height:112px}
+.svl{width:24px;position:relative}
+.svl::before{content:'';position:absolute;top:22px;bottom:22px;left:50%;transform:translateX(-50%);width:2px;background:var(--border)}
+.svl-l{display:flex;flex-direction:column;align-items:flex-end}
+.svl-r{display:flex;flex-direction:column;align-items:flex-start}
+.sstub{height:2px;background:var(--border);width:12px;position:relative;z-index:1}
+.sstub-t{margin-top:22px;margin-bottom:auto}
+.sstub-b{margin-top:auto;margin-bottom:22px}
+.sbifurc-nodes{display:flex;flex-direction:column;justify-content:center;gap:10px}
+
+/* ── PRODUCT BLOCKS ── */
+.blocks-wrap{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+
+/* column headers */
+.col-headers{
+  display:grid;
+  grid-template-columns: 152px 1fr 1fr 1fr 1fr 1.3fr;
+  gap:0;padding:0 0 6px;
+  border-bottom:1px solid var(--border-soft);
+  margin-bottom:4px;
+}
+.col-h{
+  font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);padding:0 16px;
+}
+.col-h:first-child{padding-left:0}
+
+/* product row */
+.prow{
+  display:grid;
+  grid-template-columns: 152px 1fr 1fr 1fr 1fr 1.3fr;
+  background:var(--surface);border-radius:var(--r);
+  border:1px solid var(--border-soft);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+
+/* badge cell */
+.pcell-badge{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--heading);font-weight:700;font-size:13px;
+  color:#fff;letter-spacing:.01em;padding:20px 16px;text-align:center;
+  border-right:1px solid rgba(255,255,255,.15);
+}
+.b-orange{background:#e8722a}
+.b-mint{background:#3dbfaf;color:#052020}
+.b-black{background:#1d1d1b}
+.b-red{background:#d03530}
+.b-red2{background:#8a1c18}
+.b-purple{background:#6b4fc8}
+
+/* content cell */
+.pcell{
+  padding:18px 16px;border-right:1px solid var(--border-soft);
+  display:flex;flex-direction:column;gap:8px;
+}
+.pcell:last-child{border-right:none}
+
+/* cell label */
+.clabel{
+  font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2px;
+}
+
+/* form question */
+.fq{border-radius:var(--r-xs);padding:10px 11px}
+.fq+.fq{margin-top:6px}
+.fq-text{font-size:11px;font-weight:500;color:var(--text);line-height:1.45;margin-bottom:7px;font-family:var(--medium)}
+.fq-sel{
+  width:100%;background:#fff;border:1.5px solid var(--border);border-radius:6px;
+  padding:6px 9px;font-size:10.5px;color:#bbb;font-family:var(--sans);
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23bbb' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;
+}
+.fq.orange{background:#fdf8f5;border:1px solid #f0d0b0}
+.fq.mint{background:#f0faf9;border:1px solid #a8ddd8}
+.fq.red{background:#fdf5f5;border:1px solid #f0c0be}
+.fq.purple{background:#f7f5fd;border:1px solid #c8bcf0}
+.no-q{font-size:11px;color:var(--muted);font-style:italic}
+
+/* bot tag */
+.bot-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent-soft);border:1px solid var(--accent-light);
+  border-radius:var(--r-xs);padding:7px 10px;
+  font-size:11px;font-weight:600;color:var(--accent-dark);font-family:var(--medium);
+}
+
+/* respondeu */
+.tag-sim{
+  background:var(--green-soft);border:1.5px solid #b8dcc8;
+  border-radius:var(--r-xs);padding:7px 10px;
+  font-size:11px;font-weight:600;color:var(--green-deep);
+  display:flex;align-items:center;gap:5px;font-family:var(--medium);
+}
+.tag-nao{
+  background:var(--surface-soft);border:1px solid var(--border);
+  border-radius:var(--r-xs);padding:7px 10px;
+  font-size:11px;color:var(--text-soft);
+  display:flex;align-items:center;justify-content:space-between;gap:5px;font-family:var(--sans);
+}
+.nutri-badge{
+  font-size:9px;font-weight:700;background:var(--muted);
+  color:var(--surface);border-radius:4px;padding:2px 6px;letter-spacing:.04em;
+}
+
+/* responsáveis */
+.resp{
+  background:var(--surface-soft);border:1px solid var(--border);
+  border-radius:var(--r-xs);padding:7px 10px;font-size:11px;
+  font-weight:500;color:var(--text-soft);text-align:center;font-family:var(--medium);
+}
+.resp-g{
+  background:var(--green-soft);border:1.5px solid #b8dcc8;
+  border-radius:var(--r-xs);padding:7px 10px;font-size:11px;
+  font-weight:600;color:var(--green-deep);text-align:center;font-family:var(--medium);
+}
+.darr{font-size:12px;color:var(--border);text-align:center}
+
+/* notification */
+.notif{
+  background:#fffbef;border:1.5px solid #efd470;
+  border-radius:var(--r-xs);padding:10px 11px;
+}
+.notif+.notif{margin-top:8px}
+.notif-lbl{
+  font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#c9a000;margin-bottom:7px;font-family:var(--medium);
+}
+.nbubble{
+  background:#fff;border:1px solid #e8e0c0;border-radius:6px;
+  padding:8px 9px;font-size:10px;line-height:1.65;color:var(--text);font-family:var(--sans);
+}
+.nv{color:#2b7de9;font-family:monospace;font-size:9.5px}
+.nnote{margin-top:6px;font-size:9.5px;color:var(--muted)}
+.nwa{margin-top:7px;display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text);font-weight:500;font-family:var(--medium)}
+.wabox{width:14px;height:14px;background:#2b7de9;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.footer{text-align:center;padding:40px 0 60px;font-size:12px;color:var(--muted);font-family:var(--sans)}
+.footer b{font-family:var(--heading);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="nav-client">Andaza Imóveis</span>
+      <span class="nav-sub">Estrutura de Campanhas</span>
+    </div>
+    <span class="nav-badge">Meta Ads · Formulário</span>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Operação de tráfego</div>
+    <h1 class="hero-title">Fluxograma de<br><em>campanhas</em></h1>
+    <p class="hero-sub">Do formulário Meta Ads à distribuição por empreendimento , jornada completa do lead.</p>
+  </div>
+
+  <!-- SHARED FLOW -->
+  <div class="section-label">Jornada compartilhada</div>
+  <div class="shared-card">
+    <div class="shared-flow">
+      <div class="snode">
+        <div class="sbox">Lead preenche o formulário</div>
+        <div class="sbox-caption">Meta Ads</div>
+      </div>
+      <div class="sarr"></div>
+      <div class="snode">
+        <div class="sstack">
+          <div class="sbox">Entra na roleta para distribuir o responsável</div>
+          <div class="sbox">É enviado para o Loft através da integração</div>
+        </div>
+      </div>
+      <div class="sarr"></div>
+      <div class="snode">
+        <div class="sbox">Recebe a mensagem de pré-atendimento</div>
+        <div class="sbox-caption">*Via número da Andaza</div>
+      </div>
+      <!-- SVG bifurcation -->
+      <div style="display:flex;align-items:center;flex-shrink:0;">
+        <svg width="340" height="120" viewBox="0 0 340 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;flex-shrink:0;">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arr-in" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <!-- vertical spine left -->
+          <line x1="20" y1="18" x2="20" y2="102" stroke="#c8c6bf" stroke-width="1.5"/>
+          <!-- horizontal to top box -->
+          <line x1="20" y1="30" x2="32" y2="30" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr-in)"/>
+          <!-- horizontal to bottom box -->
+          <line x1="20" y1="90" x2="32" y2="90" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr-in)"/>
+
+          <!-- TOP BOX: Respondeu -->
+          <rect x="34" y="10" width="160" height="40" rx="10" fill="#e2e9e5" stroke="#b8dcc8" stroke-width="1.5"/>
+          <text x="114" y="27" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="#333A32">Respondeu o</text>
+          <text x="114" y="42" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="#333A32">pré-atendimento</text>
+
+          <!-- BOTTOM BOX: Não respondeu -->
+          <rect x="34" y="70" width="160" height="40" rx="10" fill="#1d1d1b" stroke="#1d1d1b" stroke-width="1.5"/>
+          <text x="114" y="95" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="rgba(233,232,228,.92)">Não respondeu</text>
+
+          <!-- horizontal from top box → right spine -->
+          <line x1="194" y1="30" x2="316" y2="30" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr)"/>
+          <!-- horizontal from bottom box → right spine — dashed -->
+          <line x1="194" y1="90" x2="316" y2="90" stroke="#c8c6bf" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr-dash)"/>
+
+          <!-- vertical spine right -->
+          <line x1="320" y1="18" x2="320" y2="102" stroke="#c8c6bf" stroke-width="1.5"/>
+        </svg>
+
+        <!-- Corretor é noticiado -->
+        <div class="sbox-neutral" style="flex-shrink:0;">Corretor é noticiado</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT BLOCKS -->
+  <div class="section-label" style="margin-top:48px">Por empreendimento</div>
+
+  <!-- headers -->
+  <div class="col-headers">
+    <div class="col-h"></div>
+    <div class="col-h">📋 Formulário Meta Ads</div>
+    <div class="col-h">🤖 Pré-atendimento</div>
+    <div class="col-h">❓ Respondeu?</div>
+    <div class="col-h">💬 Corretor</div>
+    <div class="col-h">📲 Notificações WhatsApp</div>
+  </div>
+
+  <div class="blocks-wrap">
+
+    <!-- SPLENDIDO -->
+    <div class="prow">
+      <div class="pcell-badge b-orange">Splendido</div>
+      <div class="pcell">
+        <div class="clabel">Qualificação</div>
+        <div class="fq orange">
+          <div class="fq-text">Você mora em Maceió ou pretende investir na cidade?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+        <div class="fq orange">
+          <div class="fq-text">O investimento a partir de R$360 mil está dentro do que você busca hoje?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Bot ativo</div>
+        <div class="bot-tag">🤖 Pré-atendimento automático</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Resultado</div>
+        <div class="tag-sim">✓ Respondeu</div>
+        <div class="tag-nao">✕ Não respondeu <span class="nutri-badge">nutrição</span></div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Responsáveis</div>
+        <div class="resp">Lucelma</div>
+        <div class="darr">↓</div>
+        <div class="resp-g">Todos os corretores</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Notificações configuradas</div>
+        <div class="notif">
+          <div class="notif-lbl">Inicia o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Maceió/Investir: <span class="nv">{Mora ou investe em Maceió?}</span><br>
+            Aderência R$360mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead acabou de chegar! O pré-atendimento já foi iniciado.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+        <div class="notif">
+          <div class="notif-lbl">Conclui o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Maceió/Investir: <span class="nv">{Mora ou investe em Maceió?}</span><br>
+            Aderência R$360mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead finalizou o fluxo de pré-atendimento.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENTREAGUAS -->
+    <div class="prow">
+      <div class="pcell-badge b-mint">Entreaguas</div>
+      <div class="pcell">
+        <div class="clabel">Qualificação</div>
+        <div class="fq mint">
+          <div class="fq-text">Faz sentido para você investir a partir de R$3.025.499,72 em um condomínio na Rota Ecológica dos Milagres?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Bot ativo</div>
+        <div class="bot-tag">🤖 Pré-atendimento automático</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Resultado</div>
+        <div class="tag-sim">✓ Respondeu</div>
+        <div class="tag-nao">✕ Não respondeu <span class="nutri-badge">nutrição</span></div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Responsáveis</div>
+        <div class="resp">Marcelo P.</div>
+        <div class="darr">↓</div>
+        <div class="resp">Marcelo Tadeu</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Notificações configuradas</div>
+        <div class="notif">
+          <div class="notif-lbl">Inicia o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Finalidade: <span class="nv">{Finalidade do imóvel}</span><br>
+            Prazo: <span class="nv">{Prazo para compra}</span> · Aderência: <span class="nv">{Aderência ao Valor}</span>
+            <div class="nnote">Lead finalizou o fluxo de pré-atendimento.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+        <div class="notif">
+          <div class="notif-lbl">Conclui o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Finalidade: <span class="nv">{Finalidade do imóvel}</span><br>
+            Prazo: <span class="nv">{Prazo para compra}</span> · Aderência: <span class="nv">{Aderência ao Valor}</span>
+            <div class="nnote">Lead finalizou o fluxo de pré-atendimento.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPEN -->
+    <div class="prow">
+      <div class="pcell-badge b-black">Open</div>
+      <div class="pcell">
+        <div class="clabel">Qualificação</div>
+        <div class="no-q">Sem perguntas de qualificação</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Bot ativo</div>
+        <div class="bot-tag">🤖 Pré-atendimento automático</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Resultado</div>
+        <div class="tag-sim">✓ Respondeu</div>
+        <div class="tag-nao">✕ Não respondeu <span class="nutri-badge">nutrição</span></div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Responsáveis</div>
+        <div class="resp">Ale Cavalcante</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Notificações configuradas</div>
+        <div class="notif">
+          <div class="notif-lbl">Inicia o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span><br>
+            Telefone: <span class="nv">{telefone}</span><br>
+            Formulário: <span class="nv">{formulario}</span><br>
+            Campanha: <span class="nv">{campanha}</span>
+            <div class="nnote">Lead acabou de chegar! O pré-atendimento já foi iniciado.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>WhatsApp · Alessandra Cavalcante</div>
+        </div>
+        <div class="notif">
+          <div class="notif-lbl">Conclui o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span><br>
+            Telefone: <span class="nv">{telefone}</span><br>
+            Formulário: <span class="nv">{formulario}</span><br>
+            Campanha: <span class="nv">{campanha}</span><br>
+            Prazo para compra: <span class="nv">{Prazo para compra}</span><br>
+            Aderência do Valor: <span class="nv">{Aderência ao Valor}</span>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>WhatsApp · Alessandra Cavalcante</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESSENCE LIVING -->
+    <div class="prow">
+      <div class="pcell-badge b-red2">Essence Living</div>
+      <div class="pcell">
+        <div class="clabel">Qualificação</div>
+        <div class="fq red">
+          <div class="fq-text">Você mora em Maceió ou pretende investir na cidade?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+        <div class="fq red">
+          <div class="fq-text">O investimento a partir de R$400 mil está dentro do que você busca hoje?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Bot ativo</div>
+        <div class="bot-tag">🤖 Pré-atendimento automático</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Resultado</div>
+        <div class="tag-sim">✓ Respondeu</div>
+        <div class="tag-nao">✕ Não respondeu <span class="nutri-badge">nutrição</span></div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Responsáveis</div>
+        <div class="resp-g">Todos os corretores</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Notificações configuradas</div>
+        <div class="notif">
+          <div class="notif-lbl">Inicia o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Maceió/Investir: <span class="nv">{Mora ou investe em Maceió?}</span><br>
+            Aderência R$400mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead acabou de chegar! O pré-atendimento já foi iniciado.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+        <div class="notif">
+          <div class="notif-lbl">Conclui o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Maceió/Investir: <span class="nv">{Mora ou investe em Maceió?}</span><br>
+            Aderência R$400mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead finalizou o fluxo de pré-atendimento.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMIT -->
+    <div class="prow">
+      <div class="pcell-badge b-purple">Summit</div>
+      <div class="pcell">
+        <div class="clabel">Qualificação</div>
+        <div class="fq purple">
+          <div class="fq-text">Você já possui uma reserva financeira para o investimento inicial?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+        <div class="fq purple">
+          <div class="fq-text">Você confirma o interesse em adquirir um studio na Ponta Verde a partir de R$804mil?</div>
+          <select class="fq-sel" disabled><option>Selecionar</option></select>
+        </div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Bot ativo</div>
+        <div class="bot-tag">🤖 Pré-atendimento automático</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Resultado</div>
+        <div class="tag-sim">✓ Respondeu</div>
+        <div class="tag-nao">✕ Não respondeu <span class="nutri-badge">nutrição</span></div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Responsáveis</div>
+        <div class="resp">,</div>
+      </div>
+      <div class="pcell">
+        <div class="clabel">Notificações configuradas</div>
+        <div class="notif">
+          <div class="notif-lbl">Inicia o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Reserva financeira: <span class="nv">{Reserva financeira?}</span><br>
+            Aderência R$804mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead acabou de chegar! O pré-atendimento já foi iniciado.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+        <div class="notif">
+          <div class="notif-lbl">Conclui o fluxo</div>
+          <div class="nbubble">
+            <b>🟢 LEAD NOVO - LIGAR AGORA!</b><br>
+            Nome: <span class="nv">{nome-completo}</span> · Tel: <span class="nv">{telefone}</span><br>
+            Form: <span class="nv">{formulario}</span> · Camp: <span class="nv">{campanha}</span><br>
+            Reserva financeira: <span class="nv">{Reserva financeira?}</span><br>
+            Aderência R$804mil: <span class="nv">{Aderência ao valor}</span>
+            <div class="nnote">Lead finalizou o fluxo de pré-atendimento.</div>
+          </div>
+          <div class="nwa"><div class="wabox"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2.5 2.5 5-5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Notificar por WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /blocks-wrap -->
+
+  <div class="footer">
+    Produzido por <b>Trilha Performance Digital</b> · Andaza Imóveis
+  </div>
+
+</div>
+</body>
+</html>
