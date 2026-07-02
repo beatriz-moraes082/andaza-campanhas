@@ -306,20 +306,38 @@ body{
         <div class="sbox">Recebe a mensagem de pré-atendimento</div>
         <div class="sbox-caption">*Via número da Andaza</div>
       </div>
-      <div class="sbifurc">
-        <div class="svl svl-l" style="height:112px">
-          <div class="sstub sstub-t"></div><div class="sstub sstub-b"></div>
-        </div>
-        <div class="sbifurc-nodes" style="height:112px">
-          <div class="sbox-green">Respondeu o pré-atendimento</div>
-          <div class="sbox-dark">Não respondeu</div>
-        </div>
-        <div class="svl svl-r" style="height:112px">
-          <div class="sstub sstub-t"></div><div class="sstub sstub-b"></div>
-        </div>
-      </div>
-      <div class="snode">
-        <div class="sbox-neutral">Corretor é noticiado</div>
+      <!-- SVG bifurcation -->
+      <div style="display:flex;align-items:center;flex-shrink:0;">
+        <svg width="340" height="120" viewBox="0 0 340 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;flex-shrink:0;">
+          <!-- vertical spine left -->
+          <line x1="20" y1="16" x2="20" y2="104" stroke="#d8d6cf" stroke-width="2"/>
+          <!-- horizontal to top box -->
+          <line x1="20" y1="30" x2="34" y2="30" stroke="#d8d6cf" stroke-width="2"/>
+          <!-- horizontal to bottom box -->
+          <line x1="20" y1="90" x2="34" y2="90" stroke="#d8d6cf" stroke-width="2"/>
+
+          <!-- TOP BOX: Respondeu -->
+          <rect x="34" y="10" width="160" height="40" rx="10" fill="#e2e9e5" stroke="#b8dcc8" stroke-width="1.5"/>
+          <text x="114" y="27" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="#333A32">Respondeu o</text>
+          <text x="114" y="42" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="#333A32">pré-atendimento</text>
+
+          <!-- BOTTOM BOX: Não respondeu -->
+          <rect x="34" y="70" width="160" height="40" rx="10" fill="#1d1d1b" stroke="#1d1d1b" stroke-width="1.5"/>
+          <text x="114" y="95" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="rgba(233,232,228,.92)">Não respondeu</text>
+
+          <!-- vertical spine right -->
+          <line x1="320" y1="16" x2="320" y2="104" stroke="#d8d6cf" stroke-width="2"/>
+          <!-- horizontal from top box -->
+          <line x1="194" y1="30" x2="320" y2="30" stroke="#d8d6cf" stroke-width="2"/>
+          <!-- horizontal from bottom box — dashed -->
+          <line x1="194" y1="90" x2="320" y2="90" stroke="#d8d6cf" stroke-width="2" stroke-dasharray="5 4"/>
+
+          <!-- arrowhead right -->
+          <polyline points="314,24 320,30 314,36" stroke="#d8d6cf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+
+        <!-- Corretor é noticiado -->
+        <div class="sbox-neutral" style="flex-shrink:0;">Corretor é noticiado</div>
       </div>
     </div>
   </div>
