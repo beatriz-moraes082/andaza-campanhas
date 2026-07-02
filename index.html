@@ -309,12 +309,24 @@ body{
       <!-- SVG bifurcation -->
       <div style="display:flex;align-items:center;flex-shrink:0;">
         <svg width="340" height="120" viewBox="0 0 340 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;flex-shrink:0;">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arr-in" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" stroke="#aaa9a2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
           <!-- vertical spine left -->
-          <line x1="20" y1="16" x2="20" y2="104" stroke="#d8d6cf" stroke-width="2"/>
+          <line x1="20" y1="18" x2="20" y2="102" stroke="#c8c6bf" stroke-width="1.5"/>
           <!-- horizontal to top box -->
-          <line x1="20" y1="30" x2="34" y2="30" stroke="#d8d6cf" stroke-width="2"/>
+          <line x1="20" y1="30" x2="32" y2="30" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr-in)"/>
           <!-- horizontal to bottom box -->
-          <line x1="20" y1="90" x2="34" y2="90" stroke="#d8d6cf" stroke-width="2"/>
+          <line x1="20" y1="90" x2="32" y2="90" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr-in)"/>
 
           <!-- TOP BOX: Respondeu -->
           <rect x="34" y="10" width="160" height="40" rx="10" fill="#e2e9e5" stroke="#b8dcc8" stroke-width="1.5"/>
@@ -325,15 +337,13 @@ body{
           <rect x="34" y="70" width="160" height="40" rx="10" fill="#1d1d1b" stroke="#1d1d1b" stroke-width="1.5"/>
           <text x="114" y="95" text-anchor="middle" font-family="'PolySans Median',system-ui,sans-serif" font-size="11" font-weight="500" fill="rgba(233,232,228,.92)">Não respondeu</text>
 
-          <!-- vertical spine right -->
-          <line x1="320" y1="16" x2="320" y2="104" stroke="#d8d6cf" stroke-width="2"/>
-          <!-- horizontal from top box -->
-          <line x1="194" y1="30" x2="320" y2="30" stroke="#d8d6cf" stroke-width="2"/>
-          <!-- horizontal from bottom box — dashed -->
-          <line x1="194" y1="90" x2="320" y2="90" stroke="#d8d6cf" stroke-width="2" stroke-dasharray="5 4"/>
+          <!-- horizontal from top box → right spine -->
+          <line x1="194" y1="30" x2="316" y2="30" stroke="#c8c6bf" stroke-width="1.5" marker-end="url(#arr)"/>
+          <!-- horizontal from bottom box → right spine — dashed -->
+          <line x1="194" y1="90" x2="316" y2="90" stroke="#c8c6bf" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr-dash)"/>
 
-          <!-- arrowhead right -->
-          <polyline points="314,24 320,30 314,36" stroke="#d8d6cf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- vertical spine right -->
+          <line x1="320" y1="18" x2="320" y2="102" stroke="#c8c6bf" stroke-width="1.5"/>
         </svg>
 
         <!-- Corretor é noticiado -->
